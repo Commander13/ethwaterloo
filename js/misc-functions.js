@@ -98,6 +98,12 @@ function updateEmailAddress(email, account) {
 
 }
 
+function getSubscriptions() {
+
+	wallet.
+
+}
+
 
 //VENDOR
 function cancelVendorSubscription(vendor, account) {
