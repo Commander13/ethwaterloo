@@ -95,6 +95,38 @@ function populateWalletDropdown(dropdown) {
 	
 }
 
+function waitForConfirmation(txhash, callback) {
+
+	var filter = web3.eth.filter("latest");
+	filter.watch(function(error, result) {
+		if (!error) {
+			web3.eth.getTransaction(txhash, function(error, result) {
+				if (error) {
+					callback(error, null);
+				} else {
+					if (result.block != null) {
+						web3.eth.getTransactionReceipt(txhash, function(error, result) {
+							if (error) {
+								callback(error, null);
+							} else {
+								if (result.gas < result.gasUsed) {
+									callback(null, result);
+								} else {
+                             		callback("Out of gas", null);
+								}
+							}
+							filter.stopWatching();
+						});
+					}
+				}
+			});
+		} else {
+			callback(error, null);
+		}
+	});
+
+}
+
 
 window.addEventListener("load", function() {
 

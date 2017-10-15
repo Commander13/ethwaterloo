@@ -31,7 +31,7 @@ function getBalance(address) {
 }
 
 
-function waitForConfirmation(callback) {
+function waitForConfirmation(txhash, callback) {
 
 	var filter = web3.eth.filter("latest");
 	filter.watch(function(error, result) {
