@@ -72,7 +72,7 @@ function getWalletAddress(account) {
 			myWallet = getWallet(result);
 		} else if (!window.location.href.includes("signup")) {
 			console.log("Going to home");
-			window.location.replace("signup");
+			//window.location.replace("signup");
 		}
 	});
 
@@ -136,7 +136,7 @@ function waitForConfirmation(txhash, callback) {
 window.addEventListener("load", function() {
 
 	if (!hasWeb3()) {
-		window.location.replace("signup");
+		//window.location.replace("signup");
 		return;
 	}
 
