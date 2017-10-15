@@ -6,6 +6,7 @@ var walletAbi = [{"constant":false,"inputs":[{"name":"_email","type":"bytes"}],"
 
 var currentAccount;
 var myWallet;
+var accounts;
 
 function hasWeb3() {
 	return (typeof web3 == undefined);
@@ -26,9 +27,21 @@ function getRegistry() {
 	return web3.eth.contract(registryAbi).at(registryAddress);
 }
 
-function getAccounts() {
+function loadAccounts() {
 
-	return web3.eth.accounts;
+	web3.eth.getAccounts(function(error, result) {
+		accounts = result;
+
+		if (typeof(Storage) !== "undefined") {
+			currentAccount = localStorage.getItem("currentAccount");
+		}
+		if (currentAccount == null) {
+			currentAccount = accounts[0];
+		}
+
+		getWalletAddress(currentAccount);
+	});
+
 }
 
 function getBalance(address) {
@@ -66,18 +79,19 @@ function getWalletAddress(account) {
 
 function populateWalletDropdown(dropdown) {
 
-	var accounts = getAccounts();
-	console.log("ACCOUNTS COUNT = " + accounts.length);
-	for(i = 0; i < accounts.length; i += 1) {
-        var newElement;
-        newElement = document.createElement('button');
-        newElement.setAttribute("class", "dropdown-item");
-        newElement.setAttribute("type", "button");
-        newElement.value = accounts[i];
-        newElement.style.backgroundImage = getBlockiesImage(accounts[i], 5, 10);
-        newElement.style.backgroundRepeat = "no-repeat";
-        dropdown.appendChild(newElement);
-	}
+	web3.eth.getAccounts(function(error, result) {
+		console.log("ACCOUNTS COUNT = " + result.length);
+		for(i = 0; i < result.length; i += 1) {
+	        var newElement = document.createElement('button');
+	        newElement.setAttribute("class", "dropdown-item");
+	        newElement.setAttribute("type", "button");
+	        newElement.textContent = result[i];
+	        newElement.value = result[i];
+	        newElement.style.backgroundImage = getBlockiesImage(result[i], 8, 4);
+	        newElement.style.backgroundRepeat = "no-repeat";
+	        dropdown.appendChild(newElement);
+		}
+	});
 	
 }
 
@@ -89,12 +103,6 @@ window.onload = function() {
 		return;
 	}
 
-	if (typeof(Storage) !== "undefined") {
-		currentAccount = localStorage.getItem("currentAccount");
-	}
-	if (currentAccount == null) {
-		currentAccount = getAccounts()[0];
-	}
-	getWalletAddress(currentAccount);
+	loadAccounts();
 
 };
