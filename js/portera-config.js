@@ -9,7 +9,7 @@ var myWallet;
 var accounts;
 
 function hasWeb3() {
-	return (typeof web3 == undefined);
+	return (typeof web3 !== 'undefined');
 }
 
 function getWallet(address) {
@@ -99,7 +99,7 @@ function populateWalletDropdown(dropdown) {
 window.onload = function() {
 
 	if (!hasWeb3()) {
-		window.location.replace("/networkerror");
+		//window.location.replace("/networkerror");
 		return;
 	}
 
