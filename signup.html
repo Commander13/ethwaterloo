@@ -49,28 +49,28 @@
 
 
 
-          <span class="h3"><br>Setup your new Portera Wallet anonymously by clicking the button below.</span>
+          <span class="h3">Please setup your new Portera Wallet</span>
           <br>
 
+          <div class="container">
+            <div class="row vdivide">
+              <div class="col-sm-5 text-center"><br><br><br><br><button id="setupBtn" type="button" class="btn btn-warning btn-lg">Setup Anonymous Wallet</button></div>
 
-
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8"><div class="container">
-              <form action="/action_page.php">
+              <div class="col-sm-2 text-center"><br><br><br><br><b>OR</b>
+              </div>
+              <div class="col-sm-5 text-center">
+                <form action="/action_page.php">
                 <label for="emailInput">Email:</label>
-                <input type="text" id="emailInput" name="email">
-              </form>
-              <span class="smalltext">(If you would like to authenticate your account & receive updates. We will not spam you.)</span>
-            </div></div>
-            <div class="col-sm-2"></div>
+                <input type="text" id="emailInput" name="email" size="25">
+              </form><small id="emailHelp" class="form-text text-muted">Authenticate your account to receive updates. We will not spam you.</small><br>
+            <button id="setupBtn" type="button" class="btn btn-warning btn-lg">Setup My Wallet</button>
+          </div>
+
+            </div>
+
           </div>
 
 
-
-
-          <button id="setupBtn" type="button" class="btn btn-warning btn-lg">Setup My Wallet</button>
-          <br><br>
 
           <div class="row" id="loadingBar" style="visibility:hidden">
             <div class="col-md-3"></div>
@@ -79,15 +79,6 @@
 </div></div>
             <div class="col-md-3"></div>
           </div>
-
-          <span class="h5"><br>*You need to be connected to the Ethereum network to enable your Portera Wallet.
-          <br>If you are not connected, you can use the following Ethereum clients:
-          <br><br>
-          <a href="https://www.metamask.io"><img src="img/metamask.png" alt="MetaMask" width="100" height="100"></a>
-          <a href="https://www.parity.io"><img src="img/parity.png" alt="Parity" width="100" height="100"></a>
-          <a href="https://github.com/ethereum/mist/releases"><img src="img/mist.png" alt="Mist" width="100" height="100"></a>
-          </span>
-
 
         </div>
       </div>

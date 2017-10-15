@@ -1,3 +1,6 @@
+.mycontent-left {
+  border-right: 1px dashed #333;
+}
 .smalltext {
   	font-size: 12px;
     font-family: 'Bitter', serif;

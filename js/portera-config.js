@@ -45,8 +45,8 @@ function loadAccounts() {
 
 function getBalance(address) {
 
-	web3.eth.getBalance(address, function(error, result) { 
-		console.log(web3.fromWei(result.toString(), "ether")) 
+	web3.eth.getBalance(address, function(error, result) {
+		console.log(web3.fromWei(result.toString(), "ether"))
 	})
 
 }
@@ -93,7 +93,7 @@ function populateWalletDropdown(dropdown) {
 	        dropdown.appendChild(newElement);
 		}
 	});
-	
+
 }
 
 function waitForConfirmation(txhash, callback) {
