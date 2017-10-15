@@ -35,6 +35,11 @@ function getBalance(address) {
 
 }
 
+function getBlockiesImage(address, size, scale) {
+
+	return 'url(' + blockies.create({ seed:address ,size: size,scale: scale}).toDataURL()+')'
+}
+
 function selectAccount(account) {
 
 	localStorage.setItem("currentAccount", account);
