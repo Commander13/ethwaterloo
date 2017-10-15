@@ -6,6 +6,7 @@ function sendEther() {
 	myWallet.sendEther.sendTransaction(recipient, weiAmount, {from: account}, function (error, result) {
 		console.log(result);
 	});
+	var closeButton = document.getElementById("send-close").click();
 }
 
 function fundWallet() {
