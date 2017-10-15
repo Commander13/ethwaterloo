@@ -139,3 +139,17 @@ function addSubscription(vendor, account) {
 	});
 
 }
+
+//UI Functions
+function populateWalletDropdown(dropdown) {
+	var accounts = getAccounts();
+	for(i = 0; i < accounts.length; i += 1) {
+		var newElement;
+        newElement = document.createElement('option');
+        newElement.textContent = accounts[i];
+        newElement.value = accounts[i];
+        newElement.style.backgroundImage = "url('img_tree.png')"; //Generate icon here
+        newElement.style.backgroundRepeat = "no-repeat";
+        dropdown.appendChild(newElement);
+	}
+}
