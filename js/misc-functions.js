@@ -158,3 +158,17 @@ function addSubscription(vendor, account) {
 	});
 
 }
+
+//UI Functions
+function populateWalletDropdown(dropdown) {
+	var accounts = getAccounts();
+	for(i = 0; i < accounts.length; i += 1) {
+		var newElement;
+        newElement = document.createElement('option');
+        newElement.textContent = "    "+accounts[i];
+        newElement.value = accounts[i];
+        newElement.style.backgroundImage = getBlockiesImage(accounts[i], 5, 10);
+        newElement.style.backgroundRepeat = "no-repeat";
+        dropdown.appendChild(newElement);
+	}
+}
