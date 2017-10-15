@@ -7,7 +7,8 @@ var walletAbi = [{"constant":false,"inputs":[{"name":"_email","type":"bytes"}],"
 var currentAccount;
 var myWallet;
 var accounts;
-var subscriptions = [];
+var vendorSubscriptions = [];
+var balance;
 
 function hasWeb3() {
 	return (typeof web3 !== 'undefined');
@@ -46,10 +47,16 @@ function loadAccounts() {
 
 }
 
-function getBalance(address) {
+function getBalance(address, callback) {
 
 	web3.eth.getBalance(address, function(error, result) { 
-		return web3.fromWei(result.toString(), "ether");
+		if (!error) {
+			balance = web3.fromWei(result.toString(), "ether");
+			callback(null, balance);
+		} else {
+			console.log(error);
+			callback(error, null);
+		}
 	})
 
 }
@@ -73,7 +80,7 @@ function getWalletAddress(account) {
 		if (!error && result != "0x" && result != "0x0000000000000000000000000000000000000000") {
 			console.log("Wallet: " +result);
 			myWallet = getWallet(result);
-		} else if (!window.location.href.includes("signup")) {
+		} else if (!window.location.href.includes("signup") && !window.location.href.includes("vendor")) {
 			console.log("Going to home");
 			window.location.replace("signup");
 		}
@@ -84,20 +91,21 @@ function getWalletAddress(account) {
 function getSubscriptions(result) {
 	var newSubs = [];
 	for (var i=0; i<result.count; i++) {
-		newSubs.appendChild(getVendor(result));
+		newSubs.push(getVendor(result));
 	}
 	return newSubs;
 }
 
 function getVendorSubscriptions(account) {
-
+	console.log("passing"+account);
 	getRegistry().fetchVendorContracts(account, function(error, result) {
-		console.log(result);
+		console.log("gotsubs: "+result);
 		if (!error) {
-			subscriptions = getSubscriptions(result);
+			vendorSubscriptions = result;
 		} else {
 			console.log(error);
 		}
+		console.log("gotsubs: "+vendorSubscriptions);
 	});
 
 }
