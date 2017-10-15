@@ -20,7 +20,7 @@ window.onload = function() {
 			wallet = web3.eth.contract(walletAbi).at(result);
 			wallet.subscriptions(vendorAddress, function(error, result) {
 				subscription = result;
-				document.getElementById("subscribeBtn").value = "Subscribed!";
+				document.getElementById("subscribeBtn").textContent = "Subscribed!";
 			})
 		});
 	}
