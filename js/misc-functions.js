@@ -153,7 +153,7 @@ function collectPayment(amount, subscriber, account) {
 //REGISTRY
 function addSubscription(vendor, account) {
 
-	vendor.addSubscription.sendTransaction(vendor, {from: account}, function (error, result) {
+	registry.addSubscription.sendTransaction(vendor, {from: account}, function (error, result) {
 		console.log(result);
 	});
 

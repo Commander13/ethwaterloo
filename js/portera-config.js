@@ -7,6 +7,10 @@ var walletAbi = [{"constant":false,"inputs":[{"name":"_email","type":"bytes"}],"
 var currentAccount;
 var myWallet;
 
+function hasWeb3() {
+	return (typeof web3 == undefined);
+}
+
 function getWallet(address) {
 
 	return web3.eth.contract(walletAbi).at(address);
@@ -61,11 +65,16 @@ function getWalletAddress(account) {
 
 window.onload = function() {
 
+	if (!hasWeb3()) {
+		window.location.replace("/networkerror");
+		return;
+	}
+
 	if (typeof(Storage) !== "undefined") {
 		currentAccount = localStorage.getItem("currentAccount");
 	}
 	if (currentAccount == null) {
-		currentAccount = getAccounts[0];
+		currentAccount = getAccounts()[0];
 	}
 	getWalletAddress(currentAccount);
 
