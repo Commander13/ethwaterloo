@@ -63,6 +63,25 @@ function getWalletAddress(account) {
 
 }
 
+
+function populateWalletDropdown(dropdown) {
+
+	var accounts = getAccounts();
+	console.log("ACCOUNTS COUNT = " + accounts.length);
+	for(i = 0; i < accounts.length; i += 1) {
+        var newElement;
+        newElement = document.createElement('button');
+        newElement.setAttribute("class", "dropdown-item");
+        newElement.setAttribute("type", "button");
+        newElement.value = accounts[i];
+        newElement.style.backgroundImage = getBlockiesImage(accounts[i], 5, 10);
+        newElement.style.backgroundRepeat = "no-repeat";
+        dropdown.appendChild(newElement);
+	}
+	
+}
+
+
 window.onload = function() {
 
 	if (!hasWeb3()) {
