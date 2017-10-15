@@ -35,12 +35,12 @@
           <div class="right-content">
 
               <div class="before-bars">
-                  <div class="general-links">
-                      <a href="/#section-crowdsale" class="scroll-link general-link" data-string="coin.menu.ico">My Wallet</a>
-                      <a href="/#section-team" class="scroll-link general-link" data-string="coin.menu.team">Subscriptions</a>
-                      <a href="/#section-team" class="scroll-link general-link" data-string="coin.menu.team">Transactions</a>
-                      <a href="/#section-roadmap" class="scroll-link general-link" data-string="coin.menu.roadmap">Coming Soon</a>
-                  </div>
+                <div class="general-links">
+                    <a href="mywallet.html" class="scroll-link general-link" data-string="coin.menu.ico">My Wallet</a>
+                    <a href="subscriptions.html" class="scroll-link general-link" data-string="coin.menu.team">Subscriptions</a>
+                    <a href="transactions.html" class="scroll-link general-link" data-string="coin.menu.team">Transactions</a>
+                    <a href="comingsoon.html" class="scroll-link general-link" data-string="coin.menu.roadmap">Coming Soon</a>
+                </div>
 
               </div>
           </div>
@@ -56,12 +56,58 @@
       <div class="card">
         <div class="card-body text-center">
 
-          <span class="h3"><br>Your Subscriptions</span>
+          <span class="h3">Your Subscriptions</span>
           <br><br><br>
 
           <div id="subscriptionsGroup" class="d-flex justify-content-center row-fluid">
-          
+            <div class="col-md-4">
+            	<div class="flip">
+            		<div class="card">
+            			<div class="face front">
+            				<div class="inner">
+            				<img src="$IMAGE$"/>
+            				</div>
+            			</div>
+            			<div class="face back">
+            				<div class="inner text-center">
+            					<h6>Amount: $AMOUNT$ ETH<br/><br/>
+            					Frequency: $FREQUENCY$<br/><br/>
+            					Next Payment: $NEXT_PAYMENT$</h6>
+            					<button id="viewdetails" type="button" class="btn btn-default" data-toggle="modal" data-target="#sendeth" data-whatever="@mdo">View Details</button>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            </div>
 <!-- <br> -->
+          </div>
+          <div class="modal fade" id="sendeth" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Subscriber Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <img src="img/google.png" width="270" height="178">
+                    <br><Br>
+                    <div class="inner text-center">
+                      <h6>Amount: $AMOUNT$ ETH<br/><br/>
+                      Frequency: $FREQUENCY$<br/><br/>
+                      Next Payment: $NEXT_PAYMENT$</h6>
+
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="send-close">Close</button>
+                  <button id="unsubscribed" type="button" class="btn btn-danger">Unsubscribe</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <br>

@@ -57,7 +57,6 @@ function getBalance(address, callback) {
 			console.log(error);
 			callback(error, null);
 		}
-	})
 
 }
 
@@ -82,7 +81,7 @@ function getWalletAddress(account) {
 			myWallet = getWallet(result);
 		} else if (!window.location.href.includes("signup") && !window.location.href.includes("vendor")) {
 			console.log("Going to home");
-			window.location.replace("signup");
+			//window.location.replace("signup");
 		}
 	});
 
@@ -125,7 +124,7 @@ function populateWalletDropdown(dropdown) {
 	        dropdown.appendChild(newElement);
 		}
 	});
-	
+
 }
 
 function waitForConfirmation(txhash, callback) {
@@ -168,10 +167,11 @@ function waitForConfirmation(txhash, callback) {
 window.addEventListener("load", function() {
 
 	if (!hasWeb3()) {
-		window.location.replace("signup");
+		//window.location.replace("signup");
 		return;
 	}
 
 
 	loadAccounts();
 });
+
