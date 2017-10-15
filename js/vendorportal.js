@@ -1,4 +1,5 @@
 var balance;
+var subscriptions = [];var parser = new DOMParser();
 
 function waitForVendorAccountLoad() {
 
@@ -13,6 +14,7 @@ function waitForVendorAccountLoad() {
 				console.log(error);
 			}
 		});
+		populateSubscribers();
 	}
 }
 
@@ -24,42 +26,54 @@ function withdrawFunds() {
 
 }
 
-funtion populateSubscribers() {
+function collectPayment(amount, subscriber) {
 
-	vendorSubscriptions[0].getSubscriptionKeys(function(error, result) {
-		var subKeys = result;
-		for (var i = 0; i < subKeys.length; i++) {
-		var key = subKeys[i];
-		if (key != 0) {
-		vendorSubscriptions[0].subscriptions(key, function(error, result) {
-		if (error) {
-		return;
-		}
-		var subscription = result;
-		subscriptions.push(subscription);
-
-		var cardHtml = "<div class=\"card-header\" role=\"tab\" id=\"headingOne\">\r\n        <h5 class=\"mb-0\">\r\n          <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\" style=\"float:left\">\r\n            $CLIENT$\r\n          <\/a>\r\n          <button type=\"button\" id=\"unsubscribeBtn\" class=\"btn btn-primary btn-sm\" style=\"float:right\">Cancel<\/button>\r\n        <\/h5>\r\n      <\/div>";
-		 	cardHtml.replace("$CLIENT$", subscription.counterparty);
-		 	console.log(cardHtml);
-		 	var card = parser.parseFromString(cardHtml, "text/xml");
-		 	console.log(card);
-		  card.getElementById("unsubscribeBtn").addEventListener("click", function() {
-		   wallet.cancelSubscription.sendTransaction(subscription.counterparty, {from: account}, function (error, result) {
-		if (!error) {
+	vendor.collectPayment.sendTransaction(amount, subscriber, {from: vendorSubscriptions[0]}, function (error, result) {
 		console.log(result);
-		alert("Subscription Cancelled");
-		} else {
-		alert(error);
-		}
-		});
-		});
+	});
 
-		document.getElementById("subscriptionsGroup").appendChild(card);
-		})
-		}
+}
+
+function populateSubscribers() {
+	getVendor(vendorSubscriptions[0]).getSubscriptionKeys(function(error, result) {
+		var subKeys = result;
+		console.log(result);
+		for (var i = 0; i < subKeys.length; i++) {
+			var key = subKeys[i];
+			if (key != 0) {
+				getVendor(vendorSubscriptions[0]).subscriptions(key, function(error, result) {
+					if (error) {
+						return;
+					}
+					var subscription = result;
+					subscriptions.push(subscription);	
+					var cardHtml = "<div class=\"card-header\" role=\"tab\" id=\"headingOne\">\r\n        <h5 class=\"mb-0\">\r\n          <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\" style=\"float:left\">\r\n            $CLIENT$\r\n          <\/a>\r\n          <button type=\"button\" id=\"unsubscribeBtn\" class=\"btn btn-primary btn-sm\" style=\"float:right;margin-left: 10px;\">Cancel<\/button>\r\n          <button type=\"button\" id=\"collectBtn\" class=\"btn btn-primary btn-sm\" style=\"float:right\">Collect<\/button>\r\n        <\/h5>\r\n      <\/div>";
+		 			cardHtml = cardHtml.replace("$CLIENT$", subscription.counterparty);
+				  	console.log(cardHtml);
+				  	var card = parser.parseFromString(cardHtml, "text/html");
+				  	console.log(card);
+				  	card.getElementById("unsubscribeBtn").addEventListener("click", function() {
+					    wallet.cancelSubscription.sendTransaction(subscription.counterparty, {from: account}, function (error, result) {
+							if (!error) {
+								console.log(result);
+								alert("Subscription Cancelled");
+							} else {
+								alert(error);
+							}
+						});
+					});
+					card.getElementById("collectBtn").addEventListener("click", function() {
+						collectPayment(vendorSubscriptions[0].amount, subscription.counterparty);
+					});
+
+					document.getElementById("accordion").appendChild(card.firstChild);
+				});
+			}
 		}
 	});
+
 }
+	
 
 window.addEventListener("load", function() {
 
