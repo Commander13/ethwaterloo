@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Portera Wallet</title>
+  <title>Portera Wallet - Vendor</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/main.css">
@@ -31,7 +31,18 @@
             </div>
           </div>
 
+          <div class="right-content">
 
+              <div class="before-bars">
+                  <div class="general-links">
+                      <a href="/#section-crowdsale" class="scroll-link general-link" data-string="coin.menu.ico">My Wallet</a>
+                      <a href="/#section-team" class="scroll-link general-link" data-string="coin.menu.team">Subscriptions</a>
+                      <a href="/#section-team" class="scroll-link general-link" data-string="coin.menu.team">Transactions</a>
+                      <a href="/#section-roadmap" class="scroll-link general-link" data-string="coin.menu.roadmap">Coming Soon</a>
+                  </div>
+
+              </div>
+          </div>
 </nav>
 
 
@@ -46,26 +57,51 @@
         <div class="card-body text-center">
 
 
-          <span class="h3"><br>You can setup your Portera Wallet anonymously by clicking the button below.</span>
+          <span class="h3"><br>Welcome to the Vendor Console</span>
           <br>
-          <span class="smalltext">(If you would like to authenticate your account & receive updates. We will not spam you.)</span>
           <br>
-          <div class="container">
+
             <form action="/action_page.php">
               <label for="fname">Email:</label>
               <input type="text" id="fname" name="firstname">
             </form>
-          </div>
+
+
+          <span class="h5">Enter your subscription parameters:</span>
+
+          <br><br>
+
+          <div class="form-group">
+              <label for="exampleSelect1">Type of Account:</label>
+              <select class="input-small" id="exampleSelect1">
+                <option>Fixed</option>
+                <option>Variable</option>
+              </select>
+            </div>
+
+
+<div class="input-group">
+<input type="text" class="input-medium" aria-label="Text input with dropdown button">
+<div class="input-group-btn">
+<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Select
+</button>
+<div class="dropdown-menu dropdown-menu-right">
+  <a class="dropdown-item" href="#">Days</a>
+  <a class="dropdown-item" href="#">Month</a>
+  <a class="dropdown-item" href="#">Year</a>
+  <div role="separator" class="dropdown-divider"></div>
+
+</div>
+</div>
+</div>
+
+
 
           <div class="btnWallet">SETUP MY WALLET</div>
-          <br>
-          <span class="h4"><br>*You need to be connected to the Ethereum network to enable your Portera Wallet.
-          <br>If you are not connected, you can use the following Ethereum clients:
-          <br><br>
-          <a href="https://www.metamask.io"><img src="img/metamask.png" alt="MetaMask" width="100" height="100"></a>
-          <a href="https://www.parity.io"><img src="img/parity.png" alt="Parity" width="100" height="100"></a>
-          <a href="https://github.com/ethereum/mist/releases"><img src="img/mist.png" alt="Mist" width="100" height="100"></a>
-          </span>
+
+
+
 
 
         </div>
