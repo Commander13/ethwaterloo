@@ -154,14 +154,14 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="amount" class="form-control-label">Amount:</label>
-            <input type="text" class="form-control" id="amount" placeholder="Enter ETH amount">
+            <label for="fund-amount" class="form-control-label">Amount:</label>
+            <input type="text" class="form-control" id="fund-amount" placeholder="Enter ETH amount">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" id="fund-close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="fundWallet()">Send message</button>
       </div>
     </div>
   </div>

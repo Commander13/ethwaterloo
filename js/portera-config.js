@@ -38,7 +38,6 @@ function loadAccounts() {
 		if (currentAccount == null) {
 			currentAccount = accounts[0];
 		}
-		console.log("ACCOUNT:"+currentAccount);
 		getWalletAddress(currentAccount);
 	});
 
@@ -72,7 +71,7 @@ function getWalletAddress(account) {
 			myWallet = getWallet(result);
 		} else {
 			console.log("Going to home");
-			window.location.replace("/ethwaterloo/");
+			window.location.replace("index");
 		}
 	});
 
@@ -99,9 +98,8 @@ function populateWalletDropdown(dropdown) {
 
 window.addEventListener("load", function() {
 
-	console.log("Going to load accounts");
 	if (!hasWeb3()) {
-		//window.location.replace("/networkerror");
+		window.location.replace("index");
 		return;
 	}
 
