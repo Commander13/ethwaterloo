@@ -26,7 +26,7 @@ function getBalance(address) {
 
 	web3.eth.getBalance(address, function(error, result) { 
 		console.log(web3.fromWei(result.toString(), "ether")) 
-	})
+	});
 
 }
 
@@ -74,6 +74,15 @@ function sendEther(recipient, amount, account) {
 
 }
 
+function fundWallet(amount, account) {
+
+	var weiAmount = web3.toWei(amount, "ether");
+	web3.eth.sendTransaction({from:account, to:}, function (error, result) {
+
+	})
+
+}
+
 function cancelWalletSubscription(vendor, account) {
 
 	wallet.cancelSubscription.sendTransaction(vendor, {from: account}, function (error, result) {
@@ -98,9 +107,19 @@ function updateEmailAddress(email, account) {
 
 }
 
+var subscriptions = [];
 function getSubscriptions() {
 
-	wallet.
+	vendor.subscriptionKeys(function(error, result) {
+		var subKeys = result;
+		for (int i = 0; i < subKeys.length; i++) {
+			var key = subKeys[i];
+			vendor.subscriptions(key, function(error, result) {
+				subscriptions.push(result);
+				//TODO: Update UI
+			})
+		}
+	});
 
 }
 
