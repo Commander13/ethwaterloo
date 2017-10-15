@@ -17,3 +17,9 @@ function fundWallet() {
 	})
 	var closeButton = document.getElementById("fund-close").click();
 }
+
+function getBalance() {
+	web3.eth.getBalance(myWallet, function(error, result) { 
+		return web3.fromWei(result.toString(), "ether");
+	});
+}
