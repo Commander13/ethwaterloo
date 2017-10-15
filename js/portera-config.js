@@ -4,6 +4,9 @@ var registryAbi = [{"constant":true,"inputs":[{"name":"theAddress","type":"addre
 var subscriptionAbi = [{"constant":false,"inputs":[{"name":"_amount","type":"uint256"}],"name":"withdrawFunds","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"maxVariableAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"vendorType","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"email","outputs":[{"name":"","type":"bytes"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"client","type":"address"}],"name":"cancelSubscription","outputs":[{"name":"_success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"ratings","outputs":[{"name":"submitter","type":"address"},{"name":"total","type":"int32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"amount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_amount","type":"uint256"},{"name":"subscriber","type":"address"}],"name":"collectPayment","outputs":[{"name":"_success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"subscriptionKeys","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"frequency","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"subscriptions","outputs":[{"name":"counterparty","type":"address"},{"name":"startTime","type":"uint256"},{"name":"lastPaymentTime","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"subscriber","type":"address"}],"name":"addSubscription","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_owner","type":"address"},{"name":"_email","type":"bytes"},{"name":"_amount","type":"uint256"},{"name":"_maxVariableAmount","type":"uint256"},{"name":"_vendorType","type":"uint8"},{"name":"_frequency","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"}];
 var walletAbi = [{"constant":false,"inputs":[{"name":"_email","type":"bytes"}],"name":"updateEmailAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"variableAmount","type":"uint256"}],"name":"collectPayment","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"vendor","type":"address"}],"name":"confirmNewSubscription","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"email","outputs":[{"name":"","type":"bytes"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"vendor","type":"address"}],"name":"cancelSubscription","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"ratings","outputs":[{"name":"submitter","type":"address"},{"name":"total","type":"int32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"recipient","type":"address"},{"name":"amount","type":"uint256"}],"name":"sendEther","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"subscriptionKeys","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"subscriptions","outputs":[{"name":"counterparty","type":"address"},{"name":"startTime","type":"uint256"},{"name":"lastPaymentTime","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"vendor","type":"address"}],"name":"addSubscription","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_owner","type":"address"},{"name":"_email","type":"bytes"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"}];
 
+var currentAccount;
+var myWallet;
+
 function getWallet(address) {
 
 	return web3.eth.contract(walletAbi).at(address);
@@ -31,3 +34,34 @@ function getBalance(address) {
 	})
 
 }
+
+function selectAccount(account) {
+
+	localStorage.setItem("currentAccount", account);
+	location.reload();
+
+}
+
+function getWalletAddress(account) {
+
+	getRegistry().fetchMyWallet(function(error, result) {
+		if (!error && result != null) {
+			myWallet = getWallet(result);
+		} else {
+			window.location.replace("/");
+		}
+	});
+
+}
+
+window.onload = function() {
+
+	if (typeof(Storage) !== "undefined") {
+		currentAccount = localStorage.getItem("currentAccount");
+	}
+	if (currentAccount == null) {
+		currentAccount = getAccounts[0];
+	}
+	getWalletAddress(currentAccount);
+
+};
