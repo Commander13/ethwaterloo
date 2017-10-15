@@ -38,7 +38,7 @@ function loadAccounts() {
 		if (currentAccount == null) {
 			currentAccount = accounts[0];
 		}
-
+		console.log("ACCOUNT:"+currentAccount);
 		getWalletAddress(currentAccount);
 	});
 
@@ -68,8 +68,10 @@ function getWalletAddress(account) {
 
 	getRegistry().fetchMyWallet(function(error, result) {
 		if (!error && result != null) {
+			console.log("Wallet: " +result);
 			myWallet = getWallet(result);
 		} else {
+			console.log("Going to home");
 			window.location.replace("/");
 		}
 	});
@@ -80,7 +82,6 @@ function getWalletAddress(account) {
 function populateWalletDropdown(dropdown) {
 
 	web3.eth.getAccounts(function(error, result) {
-		console.log("ACCOUNTS COUNT = " + result.length);
 		for(i = 0; i < result.length; i += 1) {
 	        var newElement = document.createElement('button');
 	        newElement.setAttribute("class", "dropdown-item");
@@ -96,13 +97,15 @@ function populateWalletDropdown(dropdown) {
 }
 
 
-window.onload = function() {
+window.addEventListener("load", function() {
 
+	console.log("Going to load accounts");
 	if (!hasWeb3()) {
 		//window.location.replace("/networkerror");
 		return;
 	}
 
+
 	loadAccounts();
 
-};
+});
