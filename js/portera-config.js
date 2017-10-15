@@ -57,7 +57,7 @@ function getBalance(address, callback) {
 			console.log(error);
 			callback(error, null);
 		}
-
+	});
 }
 
 function getBlockiesImage(address, size, scale) {
