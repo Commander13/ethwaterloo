@@ -23,10 +23,7 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select your ETH account
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">Action</button>
-                <button class="dropdown-item" type="button">Another action</button>
-                <button class="dropdown-item" type="button">Something else here</button>
+              <div id="accountDropdown" class="dropdown-menu" aria-labelledby="dropdownMenu2">
               </div>
             </div>
           </div>
@@ -59,9 +56,8 @@
           <br>
           <br>
 
-            <span class="h3">Balance:<span class="h5">0.056 ETH</span></span>
-            <br>
-          <br>
+            <span class="h3" display"inline-block">Balance:<span style="color:blue">&nbsp;&nbsp;0.056</span>&nbsp;ETH</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
           <button type="button" class="btn btn-primary btn-lg">Withdraw Funds</button>
           <br>
@@ -70,89 +66,102 @@
           <span class="h3">Your Current Subscribers</span>
 <br><br>
 
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8"><div id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingOne">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Netflix
+          </a>
+        </h5>
+      </div>
 
-          <div id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="card">
-    <div class="card-header" role="tab" id="headingOne">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Netflix
-        </a>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="card-block">
-        <br>
-        <h6>Amount: 0.05 ETH/month
-        <br><br>
-        Frequency: Monthly
-        <br><br>
-        Next Payment: Oct 24th</h6><br>
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <br><br>
+      <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="card-block">
+          <br>
+          <h6>Amount: 0.05 ETH/month
+          <br><br>
+          Frequency: Monthly
+          <br><br>
+          Next Payment: Oct 24th</h6><br>
+          <button type="button" class="btn btn-danger">Cancel</button>
+          <br><br>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Google Drive
-        </a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="card-block">
-        <br>
-        <h6>Amount: 0.05 ETH/month
-        <br><br>
-        Frequency: Monthly
-        <br><br>
-        Next Payment: Oct 24th</h6><br>
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <br><br>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Google Drive
+          </a>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="card-block">
+          <br>
+          <h6>Amount: 0.05 ETH/month
+          <br><br>
+          Frequency: Monthly
+          <br><br>
+          Next Payment: Oct 24th</h6><br>
+          <button type="button" class="btn btn-danger">Cancel</button>
+          <br><br>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Geek Gym
-        </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="card-block">
-        <br>
-        <h6>Amount: 0.05 ETH/month
-        <br><br>
-        Frequency: Monthly
-        <br><br>
-        Next Payment: Oct 24th</h6><br>
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <br><br>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingThree">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Geek Gym
+          </a>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="card-block">
+          <br>
+          <h6>Amount: 0.05 ETH/month
+          <br><br>
+          Frequency: Monthly
+          <br><br>
+          Next Payment: Oct 24th</h6><br>
+          <button type="button" class="btn btn-danger">Cancel</button>
+          <br><br>
+        </div>
       </div>
     </div>
-  </div>
+  </div></div>
+  <div class="col-sm-2"></div>
 </div>
+
+
+
+
 
 <br><br>
-<div class="col-lg-8">
-<div class="card">
-  <div class="card-header">
-    Copy and Past the following code into your website:
-  </div>
-  <div class="card-block">
-    <blockquote class="card-blockquote">
-      <br>
-      <p>A bunch of Javascript</p>
 
-    </blockquote>
-  </div>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8"><div class="card">
+    <div class="card-header" style="background-color: #fcd605;">
+      Copy and Past the following code into your website:
+    </div>
+    <div class="card-block">
+      <blockquote class="card-blockquote">
+        <br>
+        <p>A bunch of Javascript</p>
+
+      </blockquote>
+    </div>
+  </div></div>
+  <div class="col-sm-2"></div>
 </div>
-</div>
+
+
+
 
 
         </div>
