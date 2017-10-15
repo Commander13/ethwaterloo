@@ -74,11 +74,11 @@ function sendEther(recipient, amount, account) {
 
 }
 
-function fundWallet(amount, account) {
+function fundWallet(amount, walletAddress, account) {
 
 	var weiAmount = web3.toWei(amount, "ether");
-	web3.eth.sendTransaction({from:account, to:}, function (error, result) {
-
+	web3.eth.sendTransaction({from:account, to:walletAddress, value: weiAmount}, function (error, result) {
+		console.log(result);
 	})
 
 }
