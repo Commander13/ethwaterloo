@@ -67,12 +67,12 @@ function selectAccount(account) {
 function getWalletAddress(account) {
 
 	getRegistry().fetchMyWallet(function(error, result) {
-		if (!error && result != null) {
+		if (!error && result != "0x") {
 			console.log("Wallet: " +result);
 			myWallet = getWallet(result);
 		} else {
 			console.log("Going to home");
-			window.location.replace("/");
+			window.location.replace("/ethwaterloo/");
 		}
 	});
 
