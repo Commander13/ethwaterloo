@@ -7,6 +7,7 @@ var walletAbi = [{"constant":false,"inputs":[{"name":"_email","type":"bytes"}],"
 var currentAccount;
 var myWallet;
 var accounts;
+var subscriptions = [];
 
 function hasWeb3() {
 	return (typeof web3 !== 'undefined');
@@ -41,6 +42,8 @@ function loadAccounts() {
 		}
 		console.log(currentAccount);
 		getWalletAddress(currentAccount);
+		getVendorSubscriptions(currentAccount);
+
 	});
 
 }
@@ -48,7 +51,7 @@ function loadAccounts() {
 function getBalance(address) {
 
 	web3.eth.getBalance(address, function(error, result) { 
-		console.log(web3.fromWei(result.toString(), "ether")) 
+		return web3.fromWei(result.toString(), "ether");
 	})
 
 }
@@ -75,6 +78,27 @@ function getWalletAddress(account) {
 		} else if (!window.location.href.includes("signup")) {
 			console.log("Going to home");
 			window.location.replace("signup");
+		}
+	});
+
+}
+
+function getSubscriptions(result) {
+	var newSubs = [];
+	for (var i=0; i<result.count; i++) {
+		newSubs.appendChild(getVendor(result));
+	}
+	return newSubs;
+}
+
+function getVendorSubscriptions(account) {
+
+	getRegistry().fetchVendorContracts(account, function(error, result) {
+		console.log(result);
+		if (!error) {
+			subscriptions = getSubscriptions(result);
+		} else {
+			console.log(error);
 		}
 	});
 
@@ -144,5 +168,4 @@ window.addEventListener("load", function() {
 
 
 	loadAccounts();
-
 });
