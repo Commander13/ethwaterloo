@@ -9,7 +9,7 @@ var myWallet;
 var accounts;
 
 function hasWeb3() {
-	return (typeof web3 == undefined);
+	return (typeof web3 !== 'undefined');
 }
 
 function getWallet(address) {
@@ -38,7 +38,6 @@ function loadAccounts() {
 		if (currentAccount == null) {
 			currentAccount = accounts[0];
 		}
-
 		getWalletAddress(currentAccount);
 	});
 
@@ -67,10 +66,12 @@ function selectAccount(account) {
 function getWalletAddress(account) {
 
 	getRegistry().fetchMyWallet(function(error, result) {
-		if (!error && result != null) {
+		if (!error && result != "0x") {
+			console.log("Wallet: " +result);
 			myWallet = getWallet(result);
 		} else {
-			window.location.replace("/");
+			console.log("Going to home");
+			window.location.replace("index");
 		}
 	});
 
@@ -80,7 +81,6 @@ function getWalletAddress(account) {
 function populateWalletDropdown(dropdown) {
 
 	web3.eth.getAccounts(function(error, result) {
-		console.log("ACCOUNTS COUNT = " + result.length);
 		for(i = 0; i < result.length; i += 1) {
 	        var newElement = document.createElement('button');
 	        newElement.setAttribute("class", "dropdown-item");
@@ -95,14 +95,47 @@ function populateWalletDropdown(dropdown) {
 	
 }
 
+function waitForConfirmation(txhash, callback) {
 
-window.onload = function() {
+	var filter = web3.eth.filter("latest");
+	filter.watch(function(error, result) {
+		if (!error) {
+			web3.eth.getTransaction(txhash, function(error, result) {
+				if (error) {
+					callback(error, null);
+				} else {
+					if (result.block != null) {
+						web3.eth.getTransactionReceipt(txhash, function(error, result) {
+							if (error) {
+								callback(error, null);
+							} else {
+								if (result.gas < result.gasUsed) {
+									callback(null, result);
+								} else {
+                             		callback("Out of gas", null);
+								}
+							}
+							filter.stopWatching();
+						});
+					}
+				}
+			});
+		} else {
+			callback(error, null);
+		}
+	});
+
+}
+
+
+window.addEventListener("load", function() {
 
 	if (!hasWeb3()) {
-		window.location.replace("/networkerror");
+		window.location.replace("index");
 		return;
 	}
 
+
 	loadAccounts();
 
-};
+});

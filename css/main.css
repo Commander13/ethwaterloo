@@ -23,6 +23,10 @@
 
 }
 
+label {
+  text-align: center;
+}
+
 .btnWallet {
     background-color: #fcd605;
     border: none;
@@ -45,7 +49,7 @@
 
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
-    width: 50%; /* Full width */
+    width: 100%; /* Full width */
     padding: 12px; /* Some padding */
     border: 1px solid #fcd605; /* Gray border */
     border-radius: 4px; /* Rounded borders */
@@ -181,10 +185,14 @@ input[type=text], select, textarea {
           perspective: 800;
         position: relative;
         text-align: center;
+           -webkit-backface-visibility: visible ;
+    backface-visibility: visible ;
 }
 .flip .card.flipped {
   -webkit-transform: rotatey(-180deg);
           transform: rotatey(-180deg);
+  -webkit-backface-visibility: visible ;
+    backface-visibility: visible ;
 }
 .flip .card {
     width: 270px;
@@ -219,3 +227,18 @@ input[type=text], select, textarea {
           transform: rotatey(-180deg);
 }
 .inner{margin:0px !important;}
+
+.contact {
+  background-color: #fff;
+  padding: 15px;
+  max-width: 200px;
+  margin: 30px auto;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}

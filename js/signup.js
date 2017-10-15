@@ -1,14 +1,24 @@
-function deployNewWallet(String email, account, callback) {
-	var registry = getRegistry();
-	registry.deployNewWallet.sendTransaction(email, {from: account}, function (error, result) {
+function deployNewWallet(email, callback) {
+	getRegistry().deployNewWallet.sendTransaction(email, {from: currentAccount}, function (error, result) {
 		if (error) {
 			callback(error, null);
 		} else {
-			waitForConfirmation(callback);
+			console.log(result);
+			waitForConfirmation(result, callback);
 		}
 	});
 }
 
-function hasWeb3() {
-	return (typeof web3 == undefined);
-}
+window.addEventListener("load", function() {
+
+	document.getElementById("setupBtn").addEventListener("click", function() {
+	    deployNewWallet(document.getElementById("emailInput").value, function(error, result) {
+	    	if (!error) {
+	    		window.location.replace("mywallet");
+	    	} else {
+	    		console.log(error);
+	    	}
+	    })
+	});
+
+});
