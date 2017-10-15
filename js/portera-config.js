@@ -14,9 +14,9 @@ function getVendor(address) {
 	return web3.eth.contract(subscriptionAbi).at(address);
 }
 
-function getRegistry(address) {
+function getRegistry() {
 
-	return web3.eth.contract(registryAbi).at(address);
+	return web3.eth.contract(registryAbi).at(registryAddress);
 }
 
 function getAccounts() {
