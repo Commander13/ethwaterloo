@@ -23,11 +23,7 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select your ETH account
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">hours</button>
-                <button class="dropdown-item" type="button">days</button>
-                <button class="dropdown-item" type="button">weeks</button>
-                <button class="dropdown-item" type="button">months</button>
+              <div id="accountDropdown" class="dropdown-menu" aria-labelledby="dropdownMenu2">
               </div>
             </div>
           </div>
@@ -44,7 +40,7 @@
 
               </div>
           </div>
-</nav>
+  </nav>
 
 
 
@@ -60,68 +56,72 @@
           <br>
           <br>
 
-            <form action="/action_page.php">
-              <label for="fname">Email:</label>
-              <input type="text" id="fname" name="firstname">
-            </form>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+
+                          <form action="/action_page.php">
+                            <label for="fname">Email:</label>
+                            <input type="text" id="fname" name="firstname">
+                          </form>
 
 
-          <span class="h5">Enter your subscription parameters:</span>
+                        <span class="h5">Enter your subscription parameters:</span>
 
-          <br><br>
+                        <br><br>
 
 
 
-          <div class="form-group">
-              <label for="exampleSelect1">Type of Account:</label>
-              <select class="input-small" id="exampleSelect1">
-                <option>Fixed</option>
-                <option>Variable</option>
-              </select>
+                        <div class="form-group">
+                            <label for="exampleSelect1">Type of Account:</label>
+                            <select class="input-small" id="exampleSelect1">
+                              <option>Fixed</option>
+                              <option>Variable</option>
+                            </select>
+                          </div>
+
+
+                               <div class="input-group align-items-center">
+
+                                 <input type="text" class="align-items-center" placeholder="Quantity">
+                                  <select class="custom-select" style="width:30%">
+                                     <option value="0">hours</option>
+                                      <option value="1">days</option>
+                                      <option value="2">weeks</option>
+                                      <option value="3">months</option>
+                                    </select>
+                                 </div>
+<br>
+                                   <button type="button" class="btn btn-warning btn-lg">Setup My Account</button>
+                               </div>
+
+
             </div>
-
-            <div class="row">
-              <div class="col-lg-5">
-                 <div class="input-group">
-                   <input type="text" class="form-control" aria-label="Text input with dropdown button">
-
-                    <select class="custom-select" style="width:40%">
-                       <option value="0">hours</option>
-                        <option value="1">days</option>
-                        <option value="2">weeks</option>
-                        <option value="3">months</option>
-                      </select>
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-
-
-<br><br>
+            <div class="col-sm-2"></div>
+          </div>
 
 
 
 
-          <div class="btnWallet">SETUP MY ACCOUNT</div>
+<br>
 
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8"><div class="card text-center">
+    <div class="card-header" style="background-color: #fcd605;">
+      Copy and Past the following code into your website:
+    </div>
+    <div class="card-block">
+      <blockquote class="card-blockquote">
+        <br>
+        <p>A bunch of Javascript</p>
 
-<br><br>
-<div class="col-lg-8">
-<div class="card">
-  <div class="card-header">
-    Copy and Paste the following code into your website:
-  </div>
-  <div class="card-block">
-    <blockquote class="card-blockquote">
-      <br>
-      <p>A bunch of Javascript</p>
-
-    </blockquote>
-  </div>
+      </blockquote>
+    </div>
+  </div></div>
+  <div class="col-sm-2"></div>
 </div>
-</div>
-
+<br><br>
 
         </div>
       </div>
