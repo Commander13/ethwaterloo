@@ -7,7 +7,7 @@ function loadSubscriptions() {
 		var subKeys = result;
 		for (var i = 0; i < subKeys.length; i++) {
 			var key = subKeys[i];
-			if (key != null && key != 0) {
+			if (key != 0) {
 				myWallet.subscriptions(key, function(error, result) {
 					if (error) {
 						return;
@@ -56,7 +56,7 @@ function waitForAccountLoad() {
 
 }
 
-document.addEventListener("load", function() {
+window.addEventListener("load", function() {
 
 	populateWalletDropdown(document.getElementById("accountDropdown"));
 	waitForAccountLoad();

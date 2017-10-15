@@ -38,7 +38,6 @@ function loadAccounts() {
 		if (currentAccount == null) {
 			currentAccount = accounts[0];
 		}
-		console.log("ACCOUNT:"+currentAccount);
 		getWalletAddress(currentAccount);
 	});
 
@@ -67,12 +66,12 @@ function selectAccount(account) {
 function getWalletAddress(account) {
 
 	getRegistry().fetchMyWallet(function(error, result) {
-		if (!error && result != null) {
+		if (!error && result != "0x") {
 			console.log("Wallet: " +result);
 			myWallet = getWallet(result);
 		} else {
 			console.log("Going to home");
-			window.location.replace("/");
+			window.location.replace("index");
 		}
 	});
 
@@ -99,9 +98,8 @@ function populateWalletDropdown(dropdown) {
 
 window.addEventListener("load", function() {
 
-	console.log("Going to load accounts");
 	if (!hasWeb3()) {
-		window.location.replace("/networkerror");
+		window.location.replace("index");
 		return;
 	}
 
